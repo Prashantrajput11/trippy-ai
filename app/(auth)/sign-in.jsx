@@ -8,7 +8,7 @@ import {
 	Text,
 } from "react-native";
 import CButton from "../../components/CButton";
-// import { supabase } from "../../utils/supabase";
+import { supabase } from "../../utils/supabase";
 
 // Tells Supabase Auth to continuously refresh the session automatically if
 // the app is in the foreground. When this is added, you will continue to receive
@@ -90,7 +90,7 @@ export default function Auth() {
 				<CButton
 					title="Sign in"
 					disabled={loading}
-					handlePress={() => signInWithEmail()}
+					onPress={() => signInWithEmail()}
 					containerStyles={styles.signInButton}
 					textStyles={styles.buttonText}
 				/>
@@ -101,7 +101,7 @@ export default function Auth() {
 				<CButton
 					title="Create Account"
 					disabled={loading}
-					handlePress={() => signUpWithEmail()}
+					onPress={() => signUpWithEmail()}
 					containerStyles={styles.signUpButton}
 					textStyles={styles.buttonTextWhite}
 				/>
