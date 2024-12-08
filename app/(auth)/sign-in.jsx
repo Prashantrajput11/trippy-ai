@@ -8,7 +8,7 @@ import {
 	Text,
 } from "react-native";
 import CButton from "../../components/CButton";
-// import { supabase } from "~/utils/supabase";
+// import { supabase } from "../../utils/supabase";
 
 // Tells Supabase Auth to continuously refresh the session automatically if
 // the app is in the foreground. When this is added, you will continue to receive

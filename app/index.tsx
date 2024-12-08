@@ -1,11 +1,13 @@
 import { Text, View } from "react-native";
 
 import Login from "../components/Login";
+import { Redirect } from "expo-router";
 
 export default function Index() {
+	const user = false;
 	return (
 		<View style={{ flex: 1 }}>
-			<Login />
+			{user ? <Redirect href="mytrips" /> : <Login />}
 		</View>
 	);
 }

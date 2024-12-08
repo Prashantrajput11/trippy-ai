@@ -35,4 +35,7 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
+# firebase/supabase/vexo
+.env
+
 app-example
