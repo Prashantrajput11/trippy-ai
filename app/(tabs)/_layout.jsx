@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Redirect, Tabs } from "expo-router";
-import Ionicons from "@expo/vector-icons/Ionicons";
+
 import { useAuth } from "@/providers/AuthProvider";
 import Login from "../../components/Login";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const TabsLayout = () => {
 	const { isAuthenticated } = useAuth();
@@ -12,7 +13,9 @@ const TabsLayout = () => {
 		return <Login />;
 	}
 	return (
-		<Tabs screenOptions={{ tabBarActiveTintColor: "green" }}>
+		<Tabs
+			screenOptions={{ tabBarActiveTintColor: "green", headerShown: false }}
+		>
 			<Tabs.Screen
 				name="mytrips"
 				options={{

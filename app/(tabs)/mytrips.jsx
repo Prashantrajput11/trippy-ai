@@ -1,14 +1,16 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import UserTrips from "../../components/UserTrips";
+import CText from "../../components/CText";
 
-const Mytrips = () => {
+const MyTrips = () => {
 	return (
-		<View>
-			<Text>Mytrips</Text>
-		</View>
+		<>
+			<UserTrips />
+		</>
 	);
 };
 
-export default Mytrips;
+export default MyTrips;
 
 const styles = StyleSheet.create({});

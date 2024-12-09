@@ -1,5 +1,6 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text } from "react-native";
 import React from "react";
+import { Colors } from "../constants/Colors";
 
 const CButton = ({
 	title,
@@ -13,7 +14,7 @@ const CButton = ({
 			onPress={onPress}
 			style={[styles.container, containerStyles, isLoading && styles.disabled]}
 		>
-			<Text style={[{ fontSize: 16 }, textStyles]}>{title}</Text>
+			<Text style={[styles.text, textStyles]}>{title}</Text>
 		</Pressable>
 	);
 };
@@ -22,19 +23,20 @@ export default CButton;
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: "#4CAF50", // Default green color
+		backgroundColor: Colors.primary,
 		borderRadius: 8,
 		minHeight: 60,
-		width: "100%",
+		paddingHorizontal: 16, // Internal padding for content
 		justifyContent: "center",
 		alignItems: "center",
+		alignSelf: "stretch", // Allows the button to respect parent width/margin
 	},
 	text: {
-		color: "#FFFFFF", // Default white text color
+		color: "#FFFFFF",
 		fontSize: 16,
 		fontWeight: "600",
 	},
 	disabled: {
-		opacity: 0.5, // Reduce opacity when disabled
+		opacity: 0.5,
 	},
 });
