@@ -5,6 +5,7 @@ import { Redirect, Tabs } from "expo-router";
 import { useAuth } from "@/providers/AuthProvider";
 import Login from "../../components/Login";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { Colors } from "../../constants/Colors";
 
 const TabsLayout = () => {
 	const { isAuthenticated } = useAuth();
@@ -19,11 +20,15 @@ const TabsLayout = () => {
 			<Tabs.Screen
 				name="mytrips"
 				options={{
-					headerTitle: "My Trips",
+					headerTitle: "My Tripss",
 					tabBarLabel: "My Trips",
 
 					tabBarIcon: ({ color }) => (
-						<Ionicons name="location-sharp" size={24} color="black" />
+						<Ionicons
+							name="location-sharp"
+							size={24}
+							color={Colors.primary_light}
+						/>
 					),
 				}}
 			/>
@@ -34,7 +39,22 @@ const TabsLayout = () => {
 					tabBarLabel: "Discover ",
 
 					tabBarIcon: ({ color }) => (
-						<Ionicons name="globe-sharp" size={24} color="black" />
+						<Ionicons
+							name="globe-sharp"
+							size={24}
+							color={Colors.primary_light}
+						/>
+					),
+				}}
+			/>
+			<Tabs.Screen
+				name="memories"
+				options={{
+					headerTitle: "Memories",
+					tabBarLabel: "Memories ",
+
+					tabBarIcon: ({ color }) => (
+						<Ionicons name="journal" size={24} color={Colors.primary_light} />
 					),
 				}}
 			/>
@@ -45,7 +65,11 @@ const TabsLayout = () => {
 					tabBarLabel: "Profile",
 
 					tabBarIcon: ({ color }) => (
-						<Ionicons name="people-circle" size={24} color="black" />
+						<Ionicons
+							name="people-circle"
+							size={24}
+							color={Colors.primary_light}
+						/>
 					),
 				}}
 			/>

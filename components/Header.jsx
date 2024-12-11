@@ -1,15 +1,19 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Pressable, SafeAreaView } from "react-native";
 import React from "react";
 import { Colors } from "../constants/Colors";
 import CText from "./CText";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { router } from "expo-router";
 
-const Header = ({ title, icon }) => {
+const Header = ({ title, icon, onPress }) => {
 	return (
-		<View style={styles.headerContainer}>
-			<Ionicons name="arrow-back" size={24} color="black" />
+		<SafeAreaView style={styles.headerContainer}>
+			<Pressable onPress={() => router.back()}>
+				<Ionicons name="arrow-back" size={24} color="black" />
+			</Pressable>
+
 			<CText style={{ textAlign: "center" }}>{title}</CText>
-		</View>
+		</SafeAreaView>
 	);
 };
 

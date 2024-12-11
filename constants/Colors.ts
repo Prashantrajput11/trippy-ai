@@ -2,6 +2,7 @@ export const Colors = {
 	// Brand Colors
 	primary: "#0077B6", // Main brand color (e.g., buttons, highlights)
 	secondary: "#00B4D8", // Supporting brand color (e.g., accents, links)
+	primary_light: "#80bbdb",
 	accent: "#90E0EF", // Additional pop (e.g., subtle highlights, badges)
 
 	// Neutral Colors
