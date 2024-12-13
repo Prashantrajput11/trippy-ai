@@ -7,7 +7,7 @@ const Login = () => {
 	return (
 		<View style={styles.container}>
 			<Image
-				source={require("../assets/images/login.png")}
+				source={require("../../assets/images/login.png")}
 				style={styles.image}
 				resizeMode="cover"
 			/>

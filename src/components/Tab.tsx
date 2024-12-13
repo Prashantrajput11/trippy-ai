@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 
-const Tab = () => {
-	const options = ["All", "Ongoing", "Upcoming"];
+const Tab = ({ onSelect }) => {
+	const options = ["All", "Active", "Upcoming"];
 	const [selectedTab, setSelectedTab] = useState(options[0]);
 
 	return (
@@ -12,7 +12,10 @@ const Tab = () => {
 				return (
 					<TouchableOpacity
 						key={option}
-						onPress={() => setSelectedTab(option)}
+						onPress={() => {
+							setSelectedTab(option); // Update selected tab state
+							onSelect(option); // Pass the actual option for filtering
+						}}
 						style={[styles.tab, isSelected && styles.selectedTab]}
 						accessibilityRole="button"
 					>
@@ -51,6 +54,7 @@ const styles = StyleSheet.create({
 		fontSize: 16,
 		color: "#000",
 		fontWeight: "bold",
+		fontFamily: "outfit-regular",
 	},
 	selectedTabText: {
 		color: "#fff",

@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { ITrip } from "@/types";
 
-const TripsListItem = ({ tripData }) => {
+const TripsListItem = ({ tripData }: { tripData: ITrip }) => {
 	const { name, destination, date } = tripData;
 
 	return (
