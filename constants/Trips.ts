@@ -23,3 +23,13 @@ export const trips: ITrip[] = [
 		type: "Upcoming",
 	},
 ];
+
+export const travelPurpose = [
+	{ id: 1, name: "Leisure" },
+	{ id: 2, name: "Business" },
+	{ id: 3, name: "Adventure" },
+	{ id: 4, name: "Romantic" },
+	{ id: 5, name: "Family Trip" },
+	{ id: 6, name: "Wellness/Relaxation" },
+	{ id: 7, name: "Cultural Exploration" },
+];

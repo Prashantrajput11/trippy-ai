@@ -11,6 +11,9 @@ import Discover from "./src/screens/Discover";
 import Profile from "./src/screens/Profile";
 import { Colors } from "./constants/Colors";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { travelPurpose } from "./constants/Trips";
+
+import TravelPreference from "./src/screens/TravelPreference";
 
 const Stack = createNativeStackNavigator();
 
@@ -29,6 +32,17 @@ const MyBottomTabs = () => {
 				component={Discover}
 				options={{
 					title: "Discover",
+
+					tabBarIcon: ({ color, size }) => (
+						<Ionicons name="earth" size={size} color={Colors.primary} />
+					),
+				}}
+			/>
+			<BottomTabs.Screen
+				name="Form"
+				component={TravelPreference}
+				options={{
+					title: "Form",
 
 					tabBarIcon: ({ color, size }) => (
 						<Ionicons name="earth" size={size} color={Colors.primary} />
