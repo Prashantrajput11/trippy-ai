@@ -1,98 +1,49 @@
+import { StyleSheet, Text, View, Pressable } from "react-native";
 import React from "react";
-import {
-	View,
-	Text,
-	TouchableOpacity,
-	StyleSheet,
-	GestureResponderEvent,
-	StyleProp,
-	ViewStyle,
-	TextStyle,
-} from "react-native";
+import { Colors } from "@/constants/Colors";
+import CText from "./CText";
 
-interface ChipProps {
-	label: string;
-	isSelected?: boolean;
-	isDismissable?: boolean;
-	onPress?: (event: GestureResponderEvent) => void;
-	onClose?: (event: GestureResponderEvent) => void;
-	customStyles?: {
-		containerStyle?: StyleProp<ViewStyle>;
-		textStyle?: StyleProp<TextStyle>;
-	};
+interface Chip {
+	title: string;
+	onPress: () => {};
+	emoji: string;
+	isSelected: boolean;
 }
-
-const Chip: React.FC<ChipProps> = ({
-	label,
-	isSelected = false,
-	isDismissable = false,
-	onPress,
-	onClose,
-	customStyles = {},
-}) => {
+const Chip = ({ title, onPress, emoji, isSelected }: Chip) => {
 	return (
-		<TouchableOpacity
-			style={[
-				styles.chipContainer,
-				isSelected ? styles.selectedChip : styles.defaultChip,
-				customStyles.containerStyle,
-			]}
+		<Pressable
 			onPress={onPress}
-			activeOpacity={0.8}
+			style={[
+				styles.container,
+				{ backgroundColor: isSelected ? "red" : Colors.background },
+			]}
 		>
-			<Text
-				style={[
-					styles.chipText,
-					isSelected ? styles.selectedText : undefined,
-					customStyles.textStyle,
-				]}
-			>
-				{label}
-			</Text>
-			{isDismissable && (
-				<TouchableOpacity onPress={onClose} style={styles.closeButton}>
-					<Text style={styles.closeButtonText}>✕</Text>
-				</TouchableOpacity>
-			)}
-		</TouchableOpacity>
+			<CText style={styles.text}>{title}</CText>
+			<CText>{emoji}</CText>
+		</Pressable>
 	);
 };
 
+export default Chip;
+
 const styles = StyleSheet.create({
-	chipContainer: {
-		flexDirection: "row",
+	container: {
+		// backgroundColor: isSelected ? "red" : Colors.background,
 		alignItems: "center",
+		borderRadius: 16,
+		marginHorizontal: 16,
+		flexDirection: "row",
 		paddingHorizontal: 12,
 		paddingVertical: 6,
-		borderRadius: 16,
-		borderWidth: 1,
-		marginRight: 8,
-		marginBottom: 8,
+		marginVertical: 16,
+		gap: 4,
+
+		borderWidth: 0.5,
+		borderColor: Colors.gray,
 	},
-	defaultChip: {
-		backgroundColor: "#f1f1f1",
-		borderColor: "#ccc",
-	},
-	selectedChip: {
-		backgroundColor: "#007bff",
-		borderColor: "#0056b3",
-	},
-	chipText: {
-		fontSize: 14,
-		color: "#333",
-	},
-	selectedText: {
-		color: "#fff",
-	},
-	closeButton: {
-		marginLeft: 8,
-		justifyContent: "center",
-		alignItems: "center",
-	},
-	closeButtonText: {
-		fontSize: 12,
-		color: "#999",
+
+	text: {
+		color: Colors.text,
+		fontFamily: "outfit-regular",
 	},
 });
-
-export default Chip;

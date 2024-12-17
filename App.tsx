@@ -14,6 +14,9 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { travelPurpose } from "./constants/Trips";
 
 import TravelPreference from "./src/screens/TravelPreference";
+import Budget from "./src/screens/Budget";
+import Group from "./src/screens/Group";
+import GenerateTrip from "./src/screens/GenerateTrip";
 
 const Stack = createNativeStackNavigator();
 
@@ -49,6 +52,7 @@ const MyBottomTabs = () => {
 					),
 				}}
 			/>
+
 			<BottomTabs.Screen
 				name="Profile"
 				component={Profile}
@@ -67,10 +71,25 @@ const App = () => {
 		<>
 			<NavigationContainer>
 				<Stack.Navigator
-					screenOptions={{ headerShown: false, headerTintColor: "red" }}
+					screenOptions={{ headerTintColor: "red", headerShown: false }}
 				>
 					<Stack.Screen name="MyBottomTabs" component={MyBottomTabs} />
 					<Stack.Screen name="Home" component={Home} />
+					<Stack.Screen
+						name="Budget"
+						component={Budget}
+						options={{ headerShown: true }}
+					/>
+					<Stack.Screen
+						name="Group"
+						component={Group}
+						options={{ headerShown: true }}
+					/>
+					<Stack.Screen
+						name="GenerateTrip"
+						component={GenerateTrip}
+						options={{ headerShown: true }}
+					/>
 				</Stack.Navigator>
 			</NavigationContainer>
 		</>

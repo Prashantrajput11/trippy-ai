@@ -25,11 +25,26 @@ export const trips: ITrip[] = [
 ];
 
 export const travelPurpose = [
-	{ id: 1, name: "Leisure" },
-	{ id: 2, name: "Business" },
-	{ id: 3, name: "Adventure" },
-	{ id: 4, name: "Romantic" },
-	{ id: 5, name: "Family Trip" },
-	{ id: 6, name: "Wellness/Relaxation" },
-	{ id: 7, name: "Cultural Exploration" },
+	{ id: 1, name: "Leisure", emoji: "🌴" },
+	{ id: 2, name: "Business", emoji: "💼" },
+	{ id: 3, name: "Adventure", emoji: "🏞️" },
+	{ id: 4, name: "Romantic", emoji: "❤️" },
+	{ id: 5, name: "Family Trip", emoji: "👨‍👩‍👧‍👦" },
+	{ id: 6, name: "Wellness/Relaxation", emoji: "🧘" },
+	{ id: 7, name: "Cultural Exploration", emoji: "🏛️" },
+];
+
+export const budgetCategories = [
+	{ id: 1, name: "Budget", emoji: "💸" },
+	{ id: 2, name: "Economy", emoji: "💵" },
+	{ id: 3, name: "Moderate", emoji: "💳" },
+	{ id: 4, name: "Luxury", emoji: "💎" },
+];
+
+export const travelGroups = [
+	{ id: 1, name: "Solo", emoji: "🧍" },
+	{ id: 2, name: "Couple", emoji: "❤️" },
+	{ id: 3, name: "Family with Kids", emoji: "👨‍👩‍👧‍👦" },
+	{ id: 4, name: "Friends", emoji: "👫" },
+	{ id: 5, name: "Group Tour", emoji: "🧑‍🤝‍🧑" },
 ];
