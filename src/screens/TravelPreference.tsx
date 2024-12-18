@@ -6,15 +6,18 @@ import CText from "../components/CText";
 import { Colors } from "@/constants/Colors";
 import CButton from "../components/CButton";
 import { useNavigation } from "@react-navigation/native";
+import { useFormContext } from "@/providers/FormProvider";
 
 const TravelPreference = () => {
 	const navigation = useNavigation();
 
 	const [selected, setSelected] = useState("");
 
+	const { updateFormData } = useFormContext();
+
 	const handleSelect = (item) => {
 		console.log(item.name);
-
+		updateFormData("travelPreference", item.name);
 		setSelected(item);
 	};
 	return (

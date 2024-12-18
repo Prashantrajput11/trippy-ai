@@ -35,16 +35,55 @@ export const travelPurpose = [
 ];
 
 export const budgetCategories = [
-	{ id: 1, name: "Budget", emoji: "💸" },
-	{ id: 2, name: "Economy", emoji: "💵" },
-	{ id: 3, name: "Moderate", emoji: "💳" },
-	{ id: 4, name: "Luxury", emoji: "💎" },
+	{
+		id: 2,
+		name: "Economy",
+		emoji: "💵",
+		description: "Moderate spending for cost-conscious travelers.",
+	},
+	{
+		id: 3,
+		name: "Moderate",
+		emoji: "💳",
+		description: "Balanced spending with comfort.",
+	},
+	{
+		id: 4,
+		name: "Luxury",
+		emoji: "💎",
+		description: "Experience premium travel and indulgence.",
+	},
 ];
 
 export const travelGroups = [
-	{ id: 1, name: "Solo", emoji: "🧍" },
-	{ id: 2, name: "Couple", emoji: "❤️" },
-	{ id: 3, name: "Family with Kids", emoji: "👨‍👩‍👧‍👦" },
-	{ id: 4, name: "Friends", emoji: "👫" },
-	{ id: 5, name: "Group Tour", emoji: "🧑‍🤝‍🧑" },
+	{
+		id: 1,
+		name: "Solo",
+		emoji: "🧍",
+		description: "Explore the world on your own terms.",
+	},
+	{
+		id: 2,
+		name: "Couple",
+		emoji: "❤️",
+		description: "A romantic getaway for two.",
+	},
+	{
+		id: 3,
+		name: "Family with Kids",
+		emoji: "👨‍👩‍👧‍👦",
+		description: "Fun-filled family adventures.",
+	},
+	{
+		id: 4,
+		name: "Friends",
+		emoji: "👫",
+		description: "Unforgettable trips with your besties.",
+	},
+	{
+		id: 5,
+		name: "Group Tour",
+		emoji: "🧑‍🤝‍🧑",
+		description: "Shared experiences with like-minded travelers.",
+	},
 ];

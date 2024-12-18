@@ -12,3 +12,9 @@ export interface ITrip {
 	date: string;
 	type: TripType;
 }
+
+export interface IFormData {
+	travelPreference: string;
+	budget: string;
+	group: string;
+}
