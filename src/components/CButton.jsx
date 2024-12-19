@@ -24,17 +24,25 @@ export default CButton;
 const styles = StyleSheet.create({
 	container: {
 		backgroundColor: Colors.primary,
-		borderRadius: 8,
-		minHeight: 60,
-		paddingHorizontal: 16, // Internal padding for content
+		borderRadius: 10,
+		height: 50,
+		paddingHorizontal: 20,
 		justifyContent: "center",
 		alignItems: "center",
-		alignSelf: "stretch", // Allows the button to respect parent width/margin
+		alignSelf: "stretch",
+		shadowColor: "#000",
+		shadowOffset: {
+			width: 0,
+			height: 2,
+		},
+		shadowOpacity: 0.25,
+		shadowRadius: 3.84,
+		elevation: 5,
 	},
 	text: {
 		color: "#FFFFFF",
-		fontSize: 16,
-		fontWeight: "600",
+		fontSize: 18,
+		fontWeight: "bold",
 	},
 	disabled: {
 		opacity: 0.5,

@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
-
+import { Colors } from "@/constants/Colors";
+import { getBadgeCount } from "@/utils/common";
+import { trips } from "@/constants/Trips";
 const Tab = ({ onSelect }) => {
 	const options = ["All", "Active", "Upcoming"];
 	const [selectedTab, setSelectedTab] = useState(options[0]);
@@ -9,21 +11,37 @@ const Tab = ({ onSelect }) => {
 		<View style={styles.container}>
 			{options.map((option) => {
 				const isSelected = selectedTab === option;
+
+				const count = getBadgeCount(option, trips);
+
+				console.log("count", count);
+
 				return (
 					<TouchableOpacity
 						key={option}
 						onPress={() => {
-							setSelectedTab(option); // Update selected tab state
-							onSelect(option); // Pass the actual option for filtering
+							setSelectedTab(option);
+							onSelect(option);
 						}}
 						style={[styles.tab, isSelected && styles.selectedTab]}
 						accessibilityRole="button"
 					>
-						<Text
-							style={[styles.tabText, isSelected && styles.selectedTabText]}
-						>
-							{option}
-						</Text>
+						<View style={styles.tabContent}>
+							<Text
+								style={[styles.tabText, isSelected && styles.selectedTabText]}
+							>
+								{option}
+							</Text>
+							{count > 0 && (
+								<View style={[styles.badge, isSelected && styles.badge]}>
+									<Text
+										style={[styles.badgeText, isSelected && styles.badgeText]}
+									>
+										{count}
+									</Text>
+								</View>
+							)}
+						</View>
 					</TouchableOpacity>
 				);
 			})}
@@ -31,32 +49,52 @@ const Tab = ({ onSelect }) => {
 	);
 };
 
-export default Tab;
-
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: "#bdc3c7",
-		borderRadius: 8,
+		backgroundColor: "#F5F5F7",
+		borderRadius: 12,
 		marginHorizontal: 16,
 		flexDirection: "row",
-		overflow: "hidden",
+		padding: 4,
+		marginVertical: 20,
 	},
 	tab: {
 		flex: 1,
 		paddingVertical: 12,
 		alignItems: "center",
-		backgroundColor: "transparent",
+		borderRadius: 8,
 	},
 	selectedTab: {
-		backgroundColor: "#2ecc71",
+		backgroundColor: Colors.primary,
 	},
 	tabText: {
-		fontSize: 16,
-		color: "#000",
-		fontWeight: "bold",
-		fontFamily: "outfit-regular",
+		fontSize: 15,
+		color: Colors.secondary,
+		fontFamily: "outfit-medium",
 	},
 	selectedTabText: {
-		color: "#fff",
+		color: "#FFF",
+		fontFamily: "outfit-semibold",
+	},
+	tabContent: {
+		flexDirection: "row",
+		alignItems: "center",
+		justifyContent: "center",
+		gap: 6,
+	},
+	badge: {
+		backgroundColor: "rgba(255, 255, 255, 0.3)",
+		paddingHorizontal: 6,
+		paddingVertical: 2,
+		borderRadius: 10,
+		minWidth: 20,
+	},
+	badgeText: {
+		color: "#FFF",
+		fontSize: 12,
+		fontFamily: "outfit-medium",
+		textAlign: "center",
 	},
 });
+
+export default Tab;

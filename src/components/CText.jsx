@@ -36,4 +36,7 @@ const styles = StyleSheet.create({
 		fontSize: 14,
 		color: Colors.error,
 	},
+	secondaryText: {
+		color: Colors.gray,
+	},
 });

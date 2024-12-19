@@ -15,10 +15,11 @@ const Chip = ({ title, onPress, emoji, isSelected }: Chip) => {
 			onPress={onPress}
 			style={[
 				styles.container,
-				{ backgroundColor: isSelected ? "red" : Colors.background },
+				{ backgroundColor: isSelected ? Colors.primary : Colors.background },
 			]}
 		>
 			<CText style={styles.text}>{title}</CText>
+
 			<CText>{emoji}</CText>
 		</Pressable>
 	);
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
 		// backgroundColor: isSelected ? "red" : Colors.background,
 		alignItems: "center",
 		borderRadius: 16,
-		marginHorizontal: 16,
+		marginHorizontal: 6,
 		flexDirection: "row",
 		paddingHorizontal: 12,
 		paddingVertical: 6,

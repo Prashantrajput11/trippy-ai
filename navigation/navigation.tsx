@@ -17,6 +17,7 @@ import Home from "@/src/screens/Home";
 import Budget from "@/src/screens/Budget";
 import Group from "@/src/screens/Group";
 import GenerateTrip from "@/src/screens/GenerateTrip";
+import MyTrips from "@/src/screens/MyTrips";
 
 const Stack = createNativeStackNavigator();
 
@@ -31,33 +32,35 @@ const MyBottomTabs = () => {
 			}}
 		>
 			<BottomTabs.Screen
-				name="Discover"
-				component={Discover}
+				name="My Trips"
+				component={MyTrips}
 				options={{
-					title: "Discover",
+					title: "My Trips",
+					tabBarActiveTintColor: Colors.primary,
 
 					tabBarIcon: ({ color, size }) => (
 						<Ionicons name="earth" size={size} color={Colors.primary} />
 					),
 				}}
 			/>
-			<BottomTabs.Screen
+			{/* <BottomTabs.Screen
 				name="Form"
 				component={TravelPreference}
 				options={{
-					title: "Form",
+					title: "Create ",
 
 					tabBarIcon: ({ color, size }) => (
 						<Ionicons name="earth" size={size} color={Colors.primary} />
 					),
 				}}
-			/>
+			/> */}
 
 			<BottomTabs.Screen
 				name="Profile"
 				component={Profile}
 				options={{
 					title: "Profile",
+					tabBarActiveTintColor: Colors.primary,
 					tabBarIcon: ({ color, size }) => (
 						<Ionicons name="people" size={size} color={Colors.primary} />
 					),
@@ -71,10 +74,18 @@ const AppNavigation = () => {
 		<>
 			<NavigationContainer>
 				<Stack.Navigator
-					screenOptions={{ headerTintColor: "red", headerShown: false }}
+					screenOptions={{
+						// headerTintColor: Colors.primary,
+						headerShown: false,
+					}}
 				>
 					<Stack.Screen name="MyBottomTabs" component={MyBottomTabs} />
-					<Stack.Screen name="Home" component={Home} />
+
+					<Stack.Screen
+						name="TravelPreference"
+						component={TravelPreference}
+						options={{ headerShown: true }}
+					/>
 					<Stack.Screen
 						name="Budget"
 						component={Budget}

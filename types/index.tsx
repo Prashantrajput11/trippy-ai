@@ -11,6 +11,7 @@ export interface ITrip {
 	destination: string;
 	date: string;
 	type: TripType;
+	country: string;
 }
 
 export interface IFormData {

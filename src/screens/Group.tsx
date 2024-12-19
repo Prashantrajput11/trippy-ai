@@ -4,8 +4,10 @@ import {
 	SafeAreaView,
 	StyleSheet,
 	View,
+	Platform,
 } from "react-native";
 import React, { useState } from "react";
+import { MotiView } from "moti";
 import CText from "../components/CText";
 import { Colors } from "@/constants/Colors";
 import { travelGroups } from "@/constants/Trips";
@@ -16,7 +18,6 @@ import { useFormContext } from "@/providers/FormProvider";
 const Group = () => {
 	const navigation = useNavigation();
 	const [selectedGroup, setSelectedGroup] = useState("");
-
 	const { updateFormData } = useFormContext();
 
 	const onSelectGroup = (name) => {
@@ -26,107 +27,170 @@ const Group = () => {
 
 	const renderGroupItem = ({ item }) => {
 		const isSelected = selectedGroup === item.name;
+
 		return (
-			<Pressable
-				style={[styles.group, isSelected && styles.selectedGroup]}
-				onPress={() => onSelectGroup(item.name)}
+			<MotiView
+				animate={{
+					scale: isSelected ? 1.02 : 1,
+				}}
+				transition={{
+					type: "timing",
+					duration: 150,
+				}}
 			>
-				<View style={styles.groupContent}>
-					<CText style={styles.groupEmoji}>{item.emoji}</CText>
-					<View style={styles.groupTextContainer}>
-						<CText style={styles.groupName}>{item.name}</CText>
-						<CText
-							style={[
-								styles.groupDescription,
-								{ color: isSelected ? Colors.white : Colors.text },
-							]}
-						>
-							{item.description}
-						</CText>
+				<Pressable
+					style={[styles.group, isSelected && styles.selectedGroup]}
+					onPress={() => onSelectGroup(item.name)}
+				>
+					<View style={styles.groupContent}>
+						<View style={styles.emojiContainer}>
+							<CText style={styles.groupEmoji}>{item.emoji}</CText>
+						</View>
+						<View style={styles.groupTextContainer}>
+							<CText
+								style={[
+									styles.groupName,
+									isSelected && styles.selectedGroupText,
+								]}
+							>
+								{item.name}
+							</CText>
+							<CText
+								style={[
+									styles.groupDescription,
+									isSelected && styles.selectedGroupText,
+								]}
+							>
+								{item.description}
+							</CText>
+						</View>
 					</View>
-				</View>
-			</Pressable>
+				</Pressable>
+			</MotiView>
 		);
 	};
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<CText style={styles.heading} variant="heading">
-				Who Are You Traveling With? 👬
-			</CText>
-			<CText style={styles.subheading} variant="default">
-				Choose your travel group to help us plan a better experience for you.
-			</CText>
+			<View style={styles.header}>
+				<CText style={styles.heading} variant="heading">
+					Who Are You Traveling With? 👬
+				</CText>
+				<CText style={styles.subheading} variant="default">
+					Choose your travel group to help us plan a better experience for you.
+				</CText>
+			</View>
 
 			<FlatList
 				data={travelGroups}
 				renderItem={renderGroupItem}
 				keyExtractor={(item) => item.id.toString()}
 				contentContainerStyle={styles.listContent}
+				showsVerticalScrollIndicator={false}
 			/>
 
-			<CButton
-				title={"Next"}
-				containerStyles={{ marginHorizontal: 16 }}
-				textStyles={{ fontFamily: "outfit-regular" }}
-				onPress={() => navigation.navigate("GenerateTrip")}
-			/>
+			<View style={styles.footer}>
+				<CButton
+					title="Next"
+					containerStyles={styles.button}
+					textStyles={styles.buttonText}
+					onPress={() => navigation.navigate("GenerateTrip")}
+					disabled={!selectedGroup}
+				/>
+			</View>
 		</SafeAreaView>
 	);
 };
-
-export default Group;
 
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: Colors.background,
 	},
+	header: {
+		paddingHorizontal: 20,
+		paddingTop: 16,
+		paddingBottom: 24,
+		backgroundColor: Colors.background,
+		...Platform.select({
+			ios: {
+				shadowColor: "#000",
+				shadowOffset: { width: 0, height: 2 },
+				shadowOpacity: 0.05,
+				shadowRadius: 8,
+			},
+			android: {
+				elevation: 2,
+			},
+		}),
+	},
 	heading: {
 		fontFamily: "outfit-bold",
-		marginVertical: 16,
+		marginBottom: 8,
 		color: Colors.text,
-		marginHorizontal: 16,
-		fontSize: 24,
+		fontSize: 28,
+		lineHeight: 34,
 	},
 	subheading: {
 		color: Colors.gray,
-		marginHorizontal: 16,
 		fontSize: 16,
-		marginBottom: 16,
+		lineHeight: 22,
+		opacity: 0.8,
 	},
 	listContent: {
-		paddingBottom: 16,
+		padding: 20,
+		paddingBottom: 100,
 	},
 	group: {
 		backgroundColor: Colors.background,
-		borderWidth: 0.2,
+		borderWidth: 1,
+		borderColor: "rgba(0,0,0,0.08)",
 		padding: 16,
-		marginVertical: 8,
-		marginHorizontal: 16,
-		borderRadius: 8,
-		elevation: 2, // For shadow effect on Android
-		shadowColor: "#000", // For shadow effect on iOS
-		shadowOffset: { width: 0, height: 2 },
-		shadowOpacity: 0.2,
-		shadowRadius: 4,
+		marginBottom: 12,
+		borderRadius: 16,
+		...Platform.select({
+			ios: {
+				shadowColor: "#000",
+				shadowOffset: { width: 0, height: 2 },
+				shadowOpacity: 0.05,
+				shadowRadius: 8,
+			},
+			android: {
+				elevation: 2,
+			},
+		}),
 	},
 	selectedGroup: {
 		backgroundColor: Colors.primary,
+		borderColor: Colors.primary,
+		...Platform.select({
+			ios: {
+				shadowColor: Colors.primary,
+				shadowOpacity: 0.2,
+			},
+		}),
 	},
 	groupContent: {
 		flexDirection: "row",
 		alignItems: "center",
 	},
+	emojiContainer: {
+		width: 52,
+		height: 52,
+		backgroundColor: "rgba(0,0,0,0.03)",
+		borderRadius: 12,
+		justifyContent: "center",
+		alignItems: "center",
+		marginRight: 16,
+	},
 	groupEmoji: {
-		fontSize: 32,
-		marginRight: 12,
+		fontSize: 28,
 	},
 	groupTextContainer: {
 		flex: 1,
 	},
 	groupName: {
-		fontFamily: "outfit-bold",
+		fontFamily: "outfit-semibold",
 		fontSize: 18,
 		color: Colors.text,
 		marginBottom: 4,
@@ -134,6 +198,40 @@ const styles = StyleSheet.create({
 	groupDescription: {
 		fontFamily: "outfit-regular",
 		fontSize: 14,
+		lineHeight: 20,
 		color: Colors.gray,
 	},
+	selectedGroupText: {
+		color: Colors.text,
+	},
+	footer: {
+		position: "absolute",
+		bottom: 0,
+		left: 0,
+		right: 0,
+		backgroundColor: Colors.background,
+		paddingHorizontal: 20,
+		paddingVertical: 16,
+		...Platform.select({
+			ios: {
+				shadowColor: "#000",
+				shadowOffset: { width: 0, height: -4 },
+				shadowOpacity: 0.08,
+				shadowRadius: 8,
+			},
+			android: {
+				elevation: 8,
+			},
+		}),
+	},
+	button: {
+		borderRadius: 12,
+		paddingVertical: 16,
+	},
+	buttonText: {
+		fontFamily: "outfit-semibold",
+		fontSize: 16,
+	},
 });
+
+export default Group;
